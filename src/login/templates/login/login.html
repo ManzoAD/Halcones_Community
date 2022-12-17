@@ -1,0 +1,93 @@
+{% extends 'plantilla.html' %}
+
+{% block estilos_login %}
+    <link rel="stylesheet" href="../../static/css/estilos_login.css">
+    <link rel="stylesheet" href="../../static/css/head_foot_reg.css">
+{% endblock %}
+
+{% block login %}
+<main class="myMain">
+
+        <div class="log">
+            <div class="cuadro">
+                <div class="inicia">
+                    <h3 >Inicia Sesion</h3>
+                </div>
+
+                <div class="imagen">
+                    <img src="../../static/img/registros/imgITJ.svg" alt="">
+                </div>
+
+                <form method="POST" id="loginForm">
+                    <div class="contenedor">
+
+                            <label class="email">Email</label>
+                            <input class="email" type="email" name="correo" id="correo" required>
+
+
+                            <label class="pass">Password</label>
+                            <input class="pass" type="password" name="clave" id="clave" required>
+
+
+                    </div>
+                    <div class="botones">
+                        <input type="radio" name="rol" value="Estudiante" id="rd_est" class="b1" required>Alumno</input>
+                        <input type="radio" name="rol" value="Profesor" id="rd_prof" class="b2" required>Profesor</input>
+                    </div>
+                    <div class="botones2">
+                        <a href="#"><button id="iniciar_usuario" class="bo1" >Iniciar Sesion</button></a>
+                    </div>
+                </form>
+                        <a href="/registros"><button class="bo2">Registrar</button></a>
+
+            </div>
+
+                <div class="o">
+                    <h1 class="lineas">_________  o  _________</h1>
+                </div>
+                <div class="g">
+                    <a class="google" href=""> Inicia con Google</a>
+                    <img src="../../static/img/pngwing.png" class="imgGoogle">
+                </div>
+
+        </div>
+        <div class="mobil">
+            <div class="titulo">
+                <h1>Inicia Sesión</h1>
+            </div>
+            <div class="m-img">
+                <img src="../../static/img/loguito 1.png" alt="">
+            </div>
+            <div class="bi">
+                <h1>Bienvenido</h1>
+            </div>
+            <div class="contenedor1">
+
+                <label class="email1">Email</label>
+                <input class="email1" type="text" required>
+
+
+                <label class="pass1">Password</label>
+                <input class="pass1" type="text" required>
+            </div>
+
+            <div class="botones1">
+                <input type="radio" name="rol" value="Estudiante" required class="b11">Alumno</input>
+                <input type="radio" name="rol" value="Profesor" required class="b21">Profesor</input>
+            </div>
+            <div class="botones21">
+                <button class="bo11">Iniciar Sesion</button>
+                <button class="bo21">Registrar</button>
+            </div>
+            <div class="g1">
+                <a class="google1" href=""> Inicia con Google</a>
+                <img src="../../static/img/pngwing.png" class="imgGoogle1">
+            </div>
+
+        </div>
+    </main>
+{% endblock %}
+
+{% block script %}
+     <script src="../../static/js/js/appLogin.js"></script>
+{% endblock %}
