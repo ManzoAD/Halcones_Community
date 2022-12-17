@@ -1,0 +1,839 @@
+nes (718 sloc)  15.4 KB
+
+/* latin */
+@font-face {
+    font-family: 'Aldrich';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/Aldrich-Regular.ttf);
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+/* latin */
+@font-face {
+font-family: 'Buenard';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(../fonts/Buenard-Bold.ttf);
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/Montserrat-Regular.ttf);
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+/* latin */
+@font-face {
+   font-family: 'Bungee-Inline';
+   font-style: normal;
+   font-weight: 400;
+   font-display: swap;
+   src: url(../fonts/BungeeInline-Regular.ttf);
+ }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+    font-family: 'Buenard', serif;
+}
+body,html{
+    width: 100%;
+    height: 100%;
+}
+body{
+    display: grid;
+    grid-template-rows: 55px 2fr 55px;
+    background-color: rgba(112, 203, 255, 0.25);
+}
+aside{
+    display: none;
+}
+.content_aside{
+    position: sticky;
+    top: 0;
+}
+
+:root{
+    --fondo:#E8F5FF;
+    --barraAside: #1034ac;
+    --fondoTec:#DAA0FF;
+    --blueComments: #0094FF;
+    --morado1:#9F1FF0;
+    --morado2:#8539B6;
+    --cardborder:#652384;
+    --grisSugerir:#5F5E5E;
+    --sombra: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    --btnAceptar:#1AA438;
+    --btnCancelar:#DD1313;
+    --avisos:#FBF0F0;
+}
+header{
+width: 100%;
+height: 6vh;
+background-color: var(--barraAside);
+display: grid;
+grid-template-columns: 124px 1fr 0.5fr;
+
+}
+
+header .logoTecNM{
+      display: flex;
+      align-items: center;
+
+}
+
+header .logoTecNM figcaption{
+color: white;
+font-family: 'Buenard', serif;
+font-size: 1.1rem;
+background-color:var(--morado1) ;
+border-radius: 2px;
+border-top: 1px solid white;
+border-right: 1px solid white;
+border-bottom: 1px solid white;
+}
+
+header .logoTecNM img{
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: var(--morado1);
+      border: 1px  solid white;
+}
+
+header .logoHalcon{
+      color: white;
+      font-family: 'Aldrich', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+}
+
+header .logoHalcon img{
+      width: 30px;
+      height: 30px;
+}
+.head_botones{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      position: relative;
+}
+
+.head_botones a:nth-child(1) img{
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      cursor: pointer;
+}
+
+.head_botones a:nth-child(2) img{
+      margin-right: 10px;
+      cursor: pointer;
+}
+
+.menu_mobile{
+   position: absolute;
+   top: 0px;
+   background-color: var(--barraAside);
+   width: 180px;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content:flex-start;
+   gap:20px;
+   border-radius: 3px;
+   z-index: 1;
+   box-shadow: var(--sombra);
+}
+
+.menu_mobile p{
+   color: white;
+   font-weight: 600;
+   text-align: center;
+   font-size: 1.5rem;
+   margin-top: 30px;
+   margin-bottom: 10px;
+   background-color: var(--blueComments);
+   height: 40px;
+   box-shadow: var(--sombra);
+   padding: 10px;
+}
+
+.menu_mobile li{
+   box-shadow: var(--sombra);
+}
+
+.notificaciones{
+   position: absolute;
+   top: 60.5px;
+   background-color: var(--barraAside);
+   width: 150px;
+   height: 87.6vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   row-gap: 10px;
+   border-radius: 2px;
+   z-index: 1;
+}
+
+.notificaciones div{
+   width: 96%;
+   background-color: var(--avisos);
+   display: flex;
+   flex-direction: column;
+   border-radius: 2px ;
+   text-align: center;
+   border: 1px solid white;
+   box-shadow: var(--sombra);
+   font-size: 1.3rem;
+   font-weight: 500;
+   box-shadow: var(--sombra);
+   border-radius: 3px;
+}
+
+.notificaciones p:nth-child(1){
+   color: white;
+   font-weight: 600;
+   text-align: center;
+   font-size: 1.5rem;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   background-color: var(--blueComments);
+   height: 35px;
+   width: 145px;
+   box-shadow: var(--sombra);
+   padding: 10px;
+}
+
+.notificaciones div img{
+   width: 25px;
+   height: 25px;
+   align-self: center;
+}
+
+.notificaciones input{
+   align-self: flex-end;
+   width: 65px;
+   height: 22px;
+   color: whitesmoke;
+   background-color: var(--fondoTec);
+   border: 1px solid white;
+   box-shadow: var(--sombra);
+   border-radius: 3px;
+}
+
+.opacar{
+   opacity: 0.5;
+}
+
+nav {
+    margin: 0 auto;
+    /* margin-top: 6rem; */
+    width: 90%;
+    border-radius: 16px;
+    margin-top: 10px;
+}
+
+nav ul li:hover{
+   background-color:var(--fondoTec);
+}
+
+nav ul{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   list-style: none;
+   gap: 2.5rem;
+}
+
+nav ul li {
+   width: 12rem;
+   height: 3rem;
+
+   border-bottom: 1px solid white;
+   border-radius: 5px;
+   text-align: center;
+}
+
+nav ul li a{
+   color: white;
+   font-size: 1.6rem;
+   text-decoration: none;
+   text-align: center;
+}
+
+nav ul li a img{
+   width: 20px;
+   height: 20px;
+   margin-top: 4px;
+   margin-right: 4px;
+
+}
+
+/*Estilos footer -----------------------------------*/
+footer{
+   width: 100%;
+   height: 100%;
+   background-color: var(--barraAside);
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+footer .redes p{
+   color:  white;
+   font-size: 1.3rem;
+   text-align: center;
+}
+footer .redes img{
+   width: 23px;
+   height: 23px;
+
+}
+
+footer .redes figure img{
+   margin-right: 5px;
+}
+
+footer .redes{
+   display: flex;
+   flex-direction: column;
+}
+
+footer .contacto{
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+}
+
+footer .contacto div{
+   display: flex;
+   align-items: center;
+
+}
+
+footer .contacto p{
+   color: white;
+   font-size: 1.3rem;
+}
+
+footer .contacto div p {
+font-size: 1.0rem;
+font-weight: bold;
+color: var(--blueComments);
+}
+
+footer .contacto .ourMail{
+   color: #00d1ff;
+   font-family: Bungee-Inline;
+   font-weight: Regular;
+   font-size: 8px;
+   opacity: 1;
+}
+
+    /* Estilos para PC */
+@media(min-width:768px) {
+   header{
+   display: none;
+   }
+
+   h2{
+   margin-top: 2.4rem;
+   padding-top: 0.3rem;
+   padding-bottom: 0.3rem;
+   font-size: 2.4rem;
+   font-family: 'Buenard';
+   text-align: center;
+   background-color: var(--fondoTec);
+   color: white;
+   box-shadow: 5px 4px 5px 5px rgba(20, 18, 18, 0.25);
+   width: 350px;
+   }
+
+   body{
+      display: grid;
+      grid-template-columns: 1fr 6fr;
+   }
+
+   aside{
+      background-color: var(--barraAside);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+   }
+
+   .content_aside{
+      display: grid;
+      grid-template-rows: 25px 1fr 1fr 1fr;
+      height: 100vh;
+      row-gap: 40px;
+      box-shadow: 10px 4px 5px rgba(20, 18, 18, 0.25);
+   }
+
+   aside{
+      background-color: var(--barraAside);
+      width: 100%;
+      height: 100vh;
+      display: flex ;
+      flex-direction: column;
+   }
+
+   main{
+      background-color: var(--fondo);
+      height: 100vh;
+   }
+
+   .imgLogo{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 3rem;
+   }
+
+   .imgLogo img{
+      width: 70px;
+      height: 66.7px;
+      margin-bottom: 5px;
+
+      background: url(Log.png);
+
+      /* Inside auto layout */
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+   }
+
+   .imgLogo figcaption{
+      margin: 10px;
+      opacity: 1;
+      position: relative;
+      text-align: center;
+      font-size: 2.3rem;
+      font-family: 'Aldrich', sans-serif;
+      color: white;
+      box-sizing: border-box;
+      border: 3px;
+      border-color: #FFFFFF;
+   }
+
+   .logoITJ{
+      margin-top: 150px;
+      margin-bottom: 150px;
+   }
+
+   .logoITJ img{
+      width: 300px;
+      height: 289.52px;
+   }
+
+   .register{
+      position: absolute;
+      top: 25%;
+      left: 30%;
+      display: flex;
+   }
+
+   .register .imagen{
+      position: relative;
+      bottom: 100%;
+   }
+   .register .imagen img{
+      border-radius: 22px;
+      box-shadow: 3px 4px 5px 3px rgba(20, 18, 18, 0.25);
+   }
+
+   .register h1{
+      color: #08237c;
+      font-family: Montserrat;
+      font-weight: Bold;
+      font-size: 36px;
+      opacity: 1;
+   }
+
+   .register .formulario{
+      position: relative;
+      left: 30%;
+   }
+
+   .register .formulario label{
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      color: #08237c;
+      font-family: Montserrat;
+      font-weight: Bold;
+      font-size: 13px;
+      opacity: 1;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      margin-right: 1em;
+   }
+
+   .register .formulario input{
+      width: 366px;
+      height: 39px;
+      padding: 15px 20px;
+      border-radius: 5px;
+      border-width: 1.5px;
+      border-color: rgba(5, 69, 247, 0.5);
+      color: rgba(7,34,123,0.6000000238418579);
+      font-size: 14px;
+      text-align: left;
+      outline: none;
+   }
+
+     .register .formulario input[type="text"]{
+        box-shadow: 2px 3px rgba(20, 18, 18, 0.25);
+     }
+
+     .register .formulario input[type="email"]{
+        box-shadow: 2px 3px rgba(20, 18, 18, 0.25);
+    }
+
+    .register .formulario input[type="password"]{
+        box-shadow: 2px 3px rgba(20, 18, 18, 0.25);
+    }
+
+   .register .formulario .inputcheck{
+      margin-top: 15px;
+      width: 366px;
+      display: inline-flex;
+   }
+   .register .formulario .inputcheck input{
+      width: 20px;
+      display: inline-flex;
+      margin-right: 10px;
+      cursor: pointer;
+   }
+
+   .register .formulario .inputcheck .form-check-input{
+      padding: 0px;
+      width: 20px;
+      height: 20px;
+   }
+
+   .register .formulario .aluprof fieldset{
+      width: 366px;
+      display: flex;
+      border: none;
+   }
+
+   .register .formulario .aluprof input{
+      width: 20px;
+      margin-right: 5px;
+      margin-bottom: 10px;
+      cursor: pointer;
+   }
+
+   .register .formulario .aluprof .form-check-input{
+      padding: 0px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50px;
+   }
+
+   .register .formulario .botones{
+      position: relative;
+      top: 10px;
+   }
+
+   .register .formulario .botones input{
+      font-family: Montserrat;
+      font-weight: Bold;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 5px 4px 5px rgba(20, 18, 18, 0.25);
+      padding: 0px;
+   }
+
+   .register .formulario .botones .btn1{
+      width: 144px;
+      height: 44px;
+      margin-right: 10px;
+      color: #FFFFFF;
+      background-color: #7B319E;
+      border-color: #7B319E;
+   }
+
+   .register .formulario .botones .btn1:hover{
+      background-color: transparent;
+      border-color: #982DF0;
+      color: #5A44DF;
+   }
+
+   .register .formulario .botones .btn2{
+      width: 177px;
+      height: 44px;
+      background-color: transparent;
+      border-color:#982DF0;
+      color: #5A44DF;
+   }
+
+   .register .formulario .botones .btn2:hover{
+      background-color: #982DF0;
+      color: #FFFFFF;
+   }
+
+   nav{
+   display: none;
+   }
+
+   .Our_Networks{
+   display: none;
+   }
+
+   footer{
+   display: none;
+   }
+
+}
+
+@media(max-width: 1465px){
+   .register img{
+      display: none;
+   }
+
+   .register{
+      position: absolute;
+      left: 45%;
+      display: flex;
+   }
+}
+
+    /* Estilos para tableta */
+@media(max-width:1024px){
+header{
+    display: none;
+}
+footer {
+    display: none;
+}
+.register{
+   position: absolute;
+   left: 37%;
+   display: flex;
+}
+
+}
+
+@media(max-width:390px){
+   header{
+      display: flex;
+   }
+
+   .logoTecNM{
+      position: relative;
+      top: 5px;
+   }
+
+   .logoHalcon{
+      position: relative;
+      top: 5px;
+      left: 5%;
+   }
+
+   .logoHalcon figcaption{
+      position: relative;
+      top: 0px;
+      left: 5%;
+   }
+
+
+   footer {
+      display: flex;
+   }
+
+   footer .redes{
+      position: relative;
+      top: 4.5%;
+   }
+
+   footer .redes p{
+      padding: 0;
+      margin: 0;
+      font-weight: 500;
+   }
+
+   footer .contacto p{
+      padding: 0;
+      margin: 0;
+      font-weight: 500;
+   }
+
+   a img{
+      display: none;
+   }
+
+   main{
+      position: absolute;
+      top: 15%;
+      left: -40%;
+      right: 100%;
+      display: flex;
+   }
+
+   .register .imagen{
+      display: none;
+   }
+
+   .register h1{
+      color: #08237c;
+      font-family: Montserrat;
+      font-weight: Bold;
+      font-size: 36px;
+      text-align: center;
+      left: 0%;
+      opacity: 1;
+   }
+
+   .register .formulario{
+      position: relative;
+      left: 30%;
+   }
+
+   .register .formulario label{
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      color: #08237c;
+      font-family: Montserrat;
+      font-weight: Bold;
+      font-size: 13px;
+      opacity: 1;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      margin-right: 1em;
+   }
+
+   .register .formulario input{
+      width: 366px;
+      height: 49px;
+      padding: 15px 20px;
+      border-radius: 5px;
+      border-width: 1.5px;
+      border-color: rgba(5, 69, 247, 0.5);
+      color: rgba(7,34,123,0.6000000238418579);
+      font-size: 14px;
+      text-align: left;
+      outline: none;
+   }
+
+     .register .formulario input[type="text"]{
+        box-shadow: 2px 3px 0px 0px rgba(20, 18, 18, 0.25);
+     }
+
+     .register .formulario input[type="email"]{
+        box-shadow: 2px 3px rgba(20, 18, 18, 0.25);
+    }
+
+    .register .formulario input[type="password"]{
+        box-shadow: 2px 3px rgba(20, 18, 18, 0.25);
+    }
+
+    .register .formulario .cont .form2 .contreverse{
+      display: flex;
+      flex-direction: column-reverse;
+      margin-top: 10px;
+    }
+
+   .register .formulario .inputcheck{
+      display: inline-flex;
+   }
+
+   .register .formulario .inputcheck input{
+      margin-right: 10px;
+   }
+
+   .register .formulario .inputcheck .form-check-input{
+      padding: 0px;
+      width: 20px;
+      height: 20px;
+   }
+
+   .register .formulario .aluprof fieldset{
+      width: 366px;
+      display: flex;
+      border: none;
+   }
+
+   .register .formulario .aluprof input{
+      width: 20px;
+      margin-right: 5px;
+      cursor: pointer;
+   }
+
+   .register .formulario .aluprof .form-check-input{
+      padding: 0px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50px;
+   }
+
+   .register .formulario .botones{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      top: 10px;
+      align-items: center;
+   }
+
+   .register .formulario .botones input{
+      font-family: Montserrat;
+      font-weight: Bold;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 5px 4px 5px rgba(20, 18, 18, 0.25);
+      margin-bottom: 1.2em;
+      padding: 0px;
+   }
+
+   .register .formulario .botones .btn1{
+      width: 170px;
+      height: 38px;
+      color: #FFFFFF;
+      background-color: #D0A2F7;
+      border-color: #7B319E;
+   }
+
+   .register .formulario .botones .btn1:hover{
+      background-color: transparent;
+      border-color: #982DF0;
+      color: #5A44DF;
+   }
+
+   .register .formulario .botones .btn2{
+      width: 146px;
+      height: 36px;
+      background-color: transparent;
+      border-color:#982DF0;
+      color: #5A44DF;
+   }
+
+   .register .formulario .botones .btn2:hover{
+      background-color: #982DF0;
+      color: #FFFFFF;
+   }
+
+}
+
+.inactive{
+    display: none;
+}
